@@ -1,0 +1,13 @@
+
+*.json
+*.xml
+*.cache
+Properties/AssemblyInfo.cs
+*.csproj
+*.user
+*.sln
+Program.cs
+*.exe
+*.pdb
+*.txt
+obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
