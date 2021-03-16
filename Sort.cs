@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Sort
 {
-    public class Sort
+    public static class Sort
     {
         static void Swap<T>(ref T v1, ref T v2)
         {
@@ -37,7 +37,7 @@ namespace Sort
         }
 
 
-        public int[] Bubble(int[] array)
+        public static int[] Bubble(int[] array)
         {
             bool isSorting = true;
 
@@ -58,7 +58,7 @@ namespace Sort
         }
 
 
-        public int[] Shaker(int[] array)
+        public static int[] Shaker(int[] array)
         {
             for (int i = 0; i < array.Length / 2; i++)
             {
@@ -92,7 +92,7 @@ namespace Sort
         }
 
 
-        public int[] Insertion(int[] array)
+        public static int[] Insertion(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
             {
@@ -110,7 +110,7 @@ namespace Sort
         }
 
 
-        int[] QuickSort(int[] array, int minIndex, int maxIndex)
+        static int[] QuickSort(int[] array, int minIndex, int maxIndex)
         {
             if (minIndex >= maxIndex)
             {
@@ -125,13 +125,13 @@ namespace Sort
         }
 
 
-        public int[] QuickSort(int[] array)
+        public static int[] QuickSort(int[] array)
         {
             return QuickSort(array, 0, array.Length - 1);
         }
 
 
-        public int[] Gnome(int[] array)
+        public static int[] Gnome(int[] array)
         {
             int index = 1;
             int nextIndex = index + 1;
@@ -159,7 +159,7 @@ namespace Sort
         }
 
 
-        public int[] Shell(int[] array)
+        public static int[] Shell(int[] array)
         {
             int d = array.Length / 2;
             while (d >= 1)
@@ -181,7 +181,7 @@ namespace Sort
         }
 
 
-        public int[] CombSort(int[] array)
+        public static int[] CombSort(int[] array)
         {
             int arrayLength = array.Length;
             int currentStep = arrayLength - 1;
