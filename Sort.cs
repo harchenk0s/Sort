@@ -12,7 +12,7 @@ namespace Sort
             v2 = tmpV;
         }
 
-        static int Partition(int[] array, int minIndex, int maxIndex)
+        static int Partition(int[] array, int minIndex, int maxIndex) // For Quick Sort
         {
             int pivot = minIndex - 1;
             for (int i = minIndex; i < maxIndex; i++)
@@ -27,6 +27,13 @@ namespace Sort
             pivot++;
             Swap(ref array[pivot], ref array[maxIndex]);
             return pivot;
+        }
+
+
+        static int GetNextStep(int s) // For Comb Sort
+        {
+            s = s * 1000 / 1247;
+            return s > 1 ? s : 1;
         }
 
 
@@ -49,6 +56,7 @@ namespace Sort
             }
             return array;
         }
+
 
         public int[] Shaker(int[] array)
         {
@@ -83,6 +91,7 @@ namespace Sort
             return array;
         }
 
+
         public int[] Insertion(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
@@ -100,6 +109,7 @@ namespace Sort
             return array;
         }
 
+
         int[] QuickSort(int[] array, int minIndex, int maxIndex)
         {
             if (minIndex >= maxIndex)
@@ -114,10 +124,100 @@ namespace Sort
             return array;
         }
 
+
         public int[] QuickSort(int[] array)
         {
             return QuickSort(array, 0, array.Length - 1);
         }
 
+
+        public int[] Gnome(int[] array)
+        {
+            int index = 1;
+            int nextIndex = index + 1;
+
+            while (index < array.Length)
+            {
+                if (array[index - 1] < array[index])
+                {
+                    index = nextIndex;
+                    nextIndex++;
+                }
+                else
+                {
+                    Swap(ref array[index - 1], ref array[index]);
+                    index--;
+                    if (index == 0)
+                    {
+                        index = nextIndex;
+                        nextIndex++;
+                    }
+                }
+            }
+
+            return array;
+        }
+
+
+        public int[] Shell(int[] array)
+        {
+            int d = array.Length / 2;
+            while (d >= 1)
+            {
+                for (int i = d; i < array.Length; i++)
+                {
+                    int j = i;
+                    while ((j >= d) && (array[j - d] > array[j]))
+                    {
+                        Swap(ref array[j], ref array[j - d]);
+                        j = j - d;
+                    }
+                }
+
+                d = d / 2;
+            }
+
+            return array;
+        }
+
+
+        public int[] CombSort(int[] array)
+        {
+            int arrayLength = array.Length;
+            int currentStep = arrayLength - 1;
+
+            while (currentStep > 1)
+            {
+                for (int i = 0; i + currentStep < array.Length; i++)
+                {
+                    if (array[i] > array[i + currentStep])
+                    {
+                        Swap(ref array[i], ref array[i + currentStep]);
+                    }
+                }
+
+                currentStep = GetNextStep(currentStep);
+            }
+
+            for (int i = 1; i < arrayLength; i++)
+            {
+                bool swapFlag = false;
+                for (int j = 0; j < arrayLength - i; j++)
+                {
+                    if (array[j] > array[j + 1])
+                    {
+                        Swap(ref array[j], ref array[j + 1]);
+                        swapFlag = true;
+                    }
+                }
+
+                if (!swapFlag)
+                {
+                    break;
+                }
+            }
+
+            return array;
+        }
     }
 }
